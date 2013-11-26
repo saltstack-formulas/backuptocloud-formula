@@ -1,0 +1,46 @@
+### BEGIN clienta pillar ###
+
+sites:
+    example.com:
+        node: pluto.myhost.com
+        webserver: nginx
+        webserver_config: clienta
+        base_path: /apps
+        real_path: /apps/clienta
+        repo: git@github.com:clients/examplecom.git
+        deploy_branch: master # needed for automated deployments (coming soon)
+        db_type: mysql
+        db_name: clienta_db
+        backup_folder: examplecom/ #remote backup folder
+         
+backup:
+    location: s3 # I want to support cloudfiles as well.
+    bucket_name: clientabucket
+    frequency: daily
+    retention_days: 7 # not used yet
+      
+schedule:
+    db_backup:
+        function: state.sls
+        hours: 24
+        args:
+            - backup
+
+### END clienta pillar ###
+
+
+### BEGIN backup pillar ###
+
+s3.keyid: YOYOYO
+s3.key: jsjsjsjsjsjsjsj
+s3.service_url: s3.amazonaws.com
+
+### END backup pillar ###
+
+
+### BEGIN sec pillar ###
+
+blahblah: 'yeahyeahyeah'
+gogo: 'nonononono'
+
+### END sec pillar ###

@@ -1,0 +1,7 @@
+base:
+    '*':
+        - sec
+    'client:clienta': # this is a grain sat on a minion with the clienta stuff
+        - match: grain
+        - clienta
+        - backup
